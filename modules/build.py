@@ -14,7 +14,8 @@ def main():
         "MHXX_TO_MHGU - ( 3DS To Switch )/mhxx_to_mhgu.py"
     ]
 
-    rmtree(absolute_path('dist'))
+    if os.path.exists(absolute_path('dist')):
+        rmtree(absolute_path('dist'))
 
     copytree(
         absolute_path('Blank_3DS_Save'),
