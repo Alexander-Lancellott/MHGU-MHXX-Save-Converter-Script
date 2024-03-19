@@ -22,8 +22,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m venv .venv 
-          source .venv/Scripts/activate
+          python -m venv .venv
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            source .venv/Scripts/activate
+          else
+            source .venv/bin/activate
+          fi
           pip install .
       
       - name: Build artifacts
