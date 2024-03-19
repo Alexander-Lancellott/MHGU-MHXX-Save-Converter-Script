@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [windows-latest, ubuntu-latest, macOS-latest]
 
     steps:
       - name: Checkout code
@@ -23,12 +23,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m venv .venv 
-          .venv\Scripts\activate
+          source .venv/Scripts/activate
           pip install .
       
       - name: Build artifacts
         run: |
-          build
+          source build
 
       - name: Compress artifacts
         run: |
