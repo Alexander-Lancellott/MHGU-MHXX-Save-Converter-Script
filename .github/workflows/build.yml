@@ -1,0 +1,45 @@
+name: Build and Package
+
+on:
+  push:
+    branches: ["test"]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv 
+          .venv\Scripts\activate
+          pip install .
+      
+      - name: Build artifacts
+        run: |
+          build
+
+      - name: Compress artifacts
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            7z a dist.zip dist
+          else
+            zip -r dist.zip dist
+          fi
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: MHGU_MHXX_Save_Converter_Script_${{ runner.os }}
+          path: dist.zip
