@@ -6,7 +6,7 @@ setup(
     author_email='alejandrov.lancellotti@gmail.com',
     version='1.0.0',
     packages=find_packages(),
-    install_requires=['readchar', 'pyinstaller', 'art==6.1'],
+    install_requires=['readchar', 'pyinstaller', 'art==6.1', 'colorama'],
     python_requires='>=3.12',
     classifiers=[
         "Programming Language :: Python :: 3",
