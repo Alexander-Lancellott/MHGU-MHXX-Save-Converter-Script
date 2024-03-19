@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='MHXX-MHGU Converter Script',
+    name='MHXX-MHGU-Save-Converter-Script',
     author='Alexander-Lancellott',
     author_email='alejandrov.lancellotti@gmail.com',
     version='1.0.0',
