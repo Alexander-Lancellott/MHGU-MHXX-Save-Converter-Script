@@ -61,6 +61,6 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         path: MHGU_MHXX_Save_Converter_Script
-        pattern: MHGU_MHXX_Save_Converter_Script-*
+        pattern: MHGU_MHXX_Save_Converter_Script_*
         merge-multiple: true
     - run: ls -R my-artifact
