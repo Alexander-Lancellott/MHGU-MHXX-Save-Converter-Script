@@ -44,7 +44,7 @@ def main():
         )
 
         subprocess.run([
-            'pyinstaller', '--onefile',
+            'pyinstaller', '--onefile', '--windowed',
             '--distpath', dist_path,
             path
         ])
