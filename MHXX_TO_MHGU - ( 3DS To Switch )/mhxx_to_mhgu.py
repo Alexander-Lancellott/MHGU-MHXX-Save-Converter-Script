@@ -24,12 +24,8 @@ def mhxx_to_mhgu():
     blank_path = '../Blank_Switch_Save/system'
 
     initial_position = 1625244
-    slot1_position = 1205364
-    slot2_position = 2378801
-    slot3_position = 3552241
-    chat1_position = 2372861
-    chat2_position = 3546301
-    chat3_position = 4719741
+    slot_positions = [1205364, 2378801, 3552241]
+    chat_positions = [2372861, 3546301, 4719741]
     chat_length = 5940
 
     try:
@@ -42,7 +38,7 @@ def mhxx_to_mhgu():
         file.close()
 
     if len(_3ds_file) != 4726152:
-        logger.error("Invalid Format!! - Please use 3DS save data")
+        logger.error('Invalid Format!! - Please use 3DS save data')
         end()
 
     try:
@@ -60,16 +56,11 @@ def mhxx_to_mhgu():
 
     new_save_data = blank[:40] + _3ds_file[4:8] + blank[44:initial_position]
 
-    # fix chat slot1
-    new_save_data = fix_chat(new_save_data, _3ds_file, slot1_position, chat1_position)
+    # fix chat
+    for i in range(len(chat_positions)):
+        new_save_data = fix_chat(new_save_data, _3ds_file, slot_positions[i], chat_positions[i])
 
-    # fix chat slot2
-    new_save_data = fix_chat(new_save_data, _3ds_file, slot2_position, chat2_position)
-
-    # fix chat slot3
-    new_save_data = fix_chat(new_save_data, _3ds_file, slot3_position, chat3_position)
-
-    new_save_data += _3ds_file[chat3_position + chat_length:]
+    new_save_data += _3ds_file[chat_positions[2] + chat_length:]
 
     output = open(output_path, 'wb')
     output.write(new_save_data)
@@ -81,7 +72,7 @@ def mhxx_to_mhgu():
 
 def main():
     if __name__ == '__main__':
-        tprint("MHXX TO MHGU\n\n", font='tarty1')
+        tprint('MHXX TO MHGU\n\n', font='tarty1')
         mhxx_to_mhgu()
 
 

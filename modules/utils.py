@@ -36,7 +36,7 @@ def path(file_path):
 
 def end():
     time.sleep(1)
-    print("\nPress Any Key To Exit")
+    print('\nPress Any Key To Exit')
     readchar.readchar()
     sys.exit()
 
