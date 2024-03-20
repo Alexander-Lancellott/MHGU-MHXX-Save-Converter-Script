@@ -1,5 +1,6 @@
 import subprocess
 import os
+import sys
 from shutil import copytree, rmtree, ignore_patterns
 
 
@@ -43,11 +44,16 @@ def main():
             symlinks=False, dirs_exist_ok=True
         )
 
-        subprocess.run([
+        command_options = [
             'pyinstaller', '--onefile', '--windowed',
             '--distpath', dist_path,
             path
-        ])
+        ]
+
+        if sys.platform == 'darwin':
+            command_options.insert(3, "--target-arch universal2")
+
+        subprocess.run(command_options)
 
 
 if __name__ == "__main__":
