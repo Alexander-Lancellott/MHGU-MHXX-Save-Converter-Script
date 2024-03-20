@@ -51,7 +51,8 @@ def main():
         ]
 
         if sys.platform == 'darwin':
-            command_options.insert(3, "--target-arch universal2")
+            command_options.insert(2, "--target-architecture")
+            command_options.insert(3, "universal2")
 
         subprocess.run(command_options)
 
