@@ -45,7 +45,7 @@ def main():
         )
 
         command_options = [
-            'pyinstaller', '--onefile',
+            'pyinstaller', '--onefile', '--windowed',
             '--distpath', dist_path,
             path
         ]
