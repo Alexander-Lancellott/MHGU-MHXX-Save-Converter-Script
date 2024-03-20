@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import os
 from shutil import copytree, rmtree, ignore_patterns
 
@@ -11,7 +12,7 @@ def main():
     files_path = [
         'FIX_SAVE - ( Switch To Switch )/fix_save.py',
         'MHGU_TO_MHXX - ( Switch To 3DS )/mhgu_to_mhxx.py',
-        "MHXX_TO_MHGU - ( 3DS To Switch )/mhxx_to_mhgu.py"
+        'MHXX_TO_MHGU - ( 3DS To Switch )/mhxx_to_mhgu.py'
     ]
 
     if os.path.exists(absolute_path('dist')):
@@ -34,8 +35,6 @@ def main():
         src_path = os.path.dirname(path)
         dist_path = absolute_path(f'dist/{file_path.split('/')[0]}')
 
-        print(absolute_path())
-
         copytree(
             src_path,
             dist_path,
@@ -43,11 +42,17 @@ def main():
             symlinks=False, dirs_exist_ok=True
         )
 
-        subprocess.run([
-            'pyinstaller', '--onefile', '--windowed',
+        command_options = [
+            'pyinstaller', '--onefile',
             '--distpath', dist_path,
             path
-        ])
+        ]
+
+        if sys.platform == 'darwin':
+            command_options.insert(2, '--target-architecture')
+            command_options.insert(3, 'universal2')
+
+        subprocess.run(command_options)
 
 
 if __name__ == "__main__":
