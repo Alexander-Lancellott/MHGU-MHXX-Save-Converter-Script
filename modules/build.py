@@ -38,7 +38,7 @@ def main():
         copytree(
             src_path,
             dist_path,
-            ignore=ignore_patterns('*.py', '*.gitkeep'),
+            ignore=ignore_patterns('*.py'),
             symlinks=False, dirs_exist_ok=True
         )
 
