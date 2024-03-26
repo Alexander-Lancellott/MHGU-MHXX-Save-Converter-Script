@@ -43,11 +43,11 @@ jobs:
           compression-level: 9
       
       - name: Download Artifacts
-      uses: actions/download-artifact@v4
-      with:
-        path: my-artifacts
-        pattern: MHGU_MHXX_Save_Converter_Script_*
-        merge-multiple: true
+        uses: actions/download-artifact@v4
+        with:
+          path: my-artifacts
+          pattern: MHGU_MHXX_Save_Converter_Script_*
+          merge-multiple: true
   
   publish:
     runs-on: ubuntu-latest
