@@ -82,12 +82,12 @@ If you are coming from section [1](#1-fix-save---extra-step-if-you-used-mhxxswit
 2. Run the `mhgu_to_mhxx.exe` file or simply `mhgu_to_mhxx` for Unix systems.
 
 >[!IMPORTANT]
->To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
+> To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
 >
-> 1 - Open the terminal and enter the following commands:
-> 2 - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
-> 3 - chmod +x mhgu_to_mhxx
-> 4 - ./mhgu_to_mhxx
+> - Open the terminal and enter the following commands:
+> - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
+> - chmod +x mhgu_to_mhxx
+> - ./mhgu_to_mhxx
 >
 > Now, this should execute the script in the terminal.
 
@@ -100,12 +100,12 @@ If you are coming from section [1](#1-fix-save---extra-step-if-you-used-mhxxswit
 2. Run the `mhxx_to_mhgu.exe` file or simply `mhxx_to_mhgu` for Unix systems.
 
 >[!IMPORTANT]
->To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
+> To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
 >
-> 1 - Open the terminal and enter the following commands:
-> 2 - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
-> 3 - chmod +x mhxx_to_mhgu
-> 4 - ./mhxx_to_mhgu
+> - Open the terminal and enter the following commands:
+> - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
+> - chmod +x mhxx_to_mhgu
+> - ./mhxx_to_mhgu
 >
 > Now, this should execute the script in the terminal.
 
