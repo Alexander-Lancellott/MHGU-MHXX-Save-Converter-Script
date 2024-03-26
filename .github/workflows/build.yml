@@ -47,6 +47,8 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -58,12 +60,18 @@ jobs:
           pattern: MHGU_MHXX_Save_Converter_Script_*
       - run: ls -R my-artifacts
 
-      - uses: google-github-actions/release-please-action@v4
-        id: release
-        with:
-          release-type: node
-      - name: Upload Release Artifact
-        if: ${{ steps.release.outputs.release_created }}
+      - name: Create GitHub Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./my-artifacts/*
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create
+          '${{ github.ref_name }}'
+          --repo '${{ github.repository }}'
+          --notes ""
+      - name: Upload artifact signatures to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release upload
+          '${{ github.ref_name }}' my-artifacts/**
+          --repo '${{ github.repository }}'
