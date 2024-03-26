@@ -44,8 +44,27 @@ jobs:
           path: dist/*
           retention-days: 2
           compression-level: 9
-  publish:
+  create_release:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+  publish:
+    needs: create_release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -56,12 +75,15 @@ jobs:
         with:
           path: my-artifacts
           pattern: MHGU_MHXX_Save_Converter_Script_*
-          merge-multiple: true
       - run: ls -R my-artifacts
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: my-artifacts/*
+      - name: Upload artifacts to release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: my-artifacts
+          asset_name: MHGU_MHXX_Save_Converter_Script
+          asset_content_type: application/zip
