@@ -35,12 +35,12 @@ The purpose of this section is to make your save file compatible with the script
 2. Run the `fix_save.exe` file or simply `fix_save` for Unix systems.
 
 >[!IMPORTANT]
->To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
+> To execute the script on a Unix system (Mac/Linux), you need to give it execute permissions by following these steps:
 >
-> 1. - Open the terminal and enter the following commands:
-> 2. - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
-> 3. - chmod +x fix_save
-> 4. - ./fix_save
+> - Open the terminal and enter the following commands:
+> - cd `"PATH OF THE SCRIPT ROOT FOLDER"`
+> - chmod +x fix_save
+> - ./fix_save
 >
 > Now, this should execute the script in the terminal.
 
