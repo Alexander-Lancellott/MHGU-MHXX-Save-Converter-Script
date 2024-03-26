@@ -45,7 +45,7 @@ jobs:
           retention-days: 2
           compression-level: 9
   publish:
-    needs: create_release
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
