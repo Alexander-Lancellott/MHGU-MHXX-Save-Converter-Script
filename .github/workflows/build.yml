@@ -44,9 +44,21 @@ jobs:
           path: dist/*
           retention-days: 2
           compression-level: 9
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Download Artifacts
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           path: my-artifacts
           pattern: MHGU_MHXX_Save_Converter_Script_*
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: my-artifacts/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
