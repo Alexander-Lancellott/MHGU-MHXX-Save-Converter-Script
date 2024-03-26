@@ -20,7 +20,7 @@ def fix_chat(new_save_data, switch_file, slot_position, chat_position):
 
 def mhgu_to_mhxx():
     file_path = 'system'
-    output_path = 'output - ( 3DS )/system'
+    output_path = 'output - (3DS)/system'
     blank_path = '../Blank_3DS_Save/system'
 
     initial_position = 1205364
