@@ -6,8 +6,13 @@ setup(
     author_email='alejandrov.lancellotti@gmail.com',
     version='1.0.0',
     packages=find_packages(),
-    install_requires=['readchar', 'pyinstaller', 'art==6.1', 'colorama'],
-    python_requires='>=3.12',
+    install_requires=[
+        'pyinstaller==6.5.0', 
+        'readchar==4.0.6', 
+        'colorama==0.4.6', 
+        'art==6.1'
+    ],
+    python_requires='>=3.8',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

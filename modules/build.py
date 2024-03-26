@@ -10,9 +10,9 @@ def absolute_path(path: str = ''):
 
 def main():
     files_path = [
-        'FIX_SAVE - ( Switch To Switch )/fix_save.py',
-        'MHGU_TO_MHXX - ( Switch To 3DS )/mhgu_to_mhxx.py',
-        'MHXX_TO_MHGU - ( 3DS To Switch )/mhxx_to_mhgu.py'
+        'FIX_SAVE - (Switch To Switch)/fix_save.py',
+        'MHGU_TO_MHXX - (Switch To 3DS)/mhgu_to_mhxx.py',
+        'MHXX_TO_MHGU - (3DS To Switch)/mhxx_to_mhgu.py'
     ]
 
     if os.path.exists(absolute_path('dist')):
@@ -33,7 +33,7 @@ def main():
     for file_path in files_path:
         path = absolute_path(file_path)
         src_path = os.path.dirname(path)
-        dist_path = absolute_path(f'dist/{file_path.split('/')[0]}')
+        dist_path = absolute_path(f'dist/{file_path.split("/")[0]}')
 
         copytree(
             src_path,
