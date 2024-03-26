@@ -3,7 +3,7 @@ name: Build and Package
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*'
 
 jobs:
   build:
