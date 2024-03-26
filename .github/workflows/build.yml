@@ -51,16 +51,3 @@ jobs:
         path: my-artifacts
         pattern: MHGU_MHXX_Save_Converter_Script_*
         merge-multiple: true
-  
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: my-artifacts/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
