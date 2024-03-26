@@ -57,7 +57,7 @@ jobs:
           path: my-artifacts
           pattern: MHGU_MHXX_Save_Converter_Script_*
           merge-multiple: true
-      - run: ls -R my-artifact
+      - run: ls -R my-artifacts
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
