@@ -1,0 +1,46 @@
+name: Build & Upload Artifacts
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macOS-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Create and activate virtual environment on Unix
+        if: runner.os != 'Windows'
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+
+      - name: Create and activate virtual environment on Windows
+        if: runner.os == 'Windows'
+        run: |
+          python -m venv .venv
+          .venv\Scripts\activate
+
+      - name: Build Artifact
+        run: |
+          pip install .
+          build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MHGU_MHXX_Save_Converter_Script_${{ runner.os }}
+          path: dist/*
+          retention-days: 2
+          compression-level: 9
