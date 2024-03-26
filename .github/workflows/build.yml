@@ -37,6 +37,16 @@ jobs:
           pip install .
           build
 
+      - name: Compress artifacts on Unix
+        if: runner.os != 'Windows'
+        run: |
+          zip -r dist.zip dist
+
+      - name: Compress artifacts on Windows
+        if: runner.os == 'Windows'
+        run: |
+          7z a dist.zip dist
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -73,5 +83,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh release upload
-          '${{ github.ref_name }}' my-artifacts/**
+          '${{ github.ref_name }}' my-artifacts/*
           --repo '${{ github.repository }}'
