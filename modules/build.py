@@ -1,7 +1,7 @@
 import subprocess
 import sys
 import os
-from shutil import copytree, rmtree, ignore_patterns
+from shutil import copy, copytree, rmtree, ignore_patterns
 
 
 def absolute_path(path: str = ''):
@@ -28,6 +28,16 @@ def main():
         absolute_path('Blank_Switch_Save'),
         absolute_path('dist/Blank_Switch_Save'),
         symlinks=False, dirs_exist_ok=True
+    )
+
+    copy(
+        absolute_path('README.md'), 
+        absolute_path('dist/README.md')
+    )
+
+    copy(
+        absolute_path('LICENSE'), 
+        absolute_path('dist/LICENSE')
     )
 
     for file_path in files_path:
