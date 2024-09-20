@@ -40,6 +40,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MHGU_MHXX_Save_Converter_Script_${{ runner.os }}
-          path: dist/*
+          path: dist/**
           retention-days: 2
           compression-level: 9
