@@ -1,18 +1,15 @@
 import subprocess
 import sys
 import os
-from shutil import copy, copytree, rmtree, ignore_patterns
-
-
-def absolute_path(path: str = ''):
-    return os.path.abspath(path).replace('\\modules', '')
+from shutil import copy, copytree, rmtree
+from modules.utils import absolute_path
 
 
 def main():
-    files_path = [
-        'FIX_SAVE - (Switch To Switch)/fix_save.py',
-        'MHGU_TO_MHXX - (Switch To 3DS)/mhgu_to_mhxx.py',
-        'MHXX_TO_MHGU - (3DS To Switch)/mhxx_to_mhgu.py'
+    paths = [
+        'FIX_SAVE - (Switch To Switch)',
+        'MHGU-XX_TO_MHXX - (Switch To 3DS)',
+        'MHXX_TO_MHGU-XX - (3DS To Switch)'
     ]
 
     if os.path.exists(absolute_path('dist')):
@@ -31,38 +28,37 @@ def main():
     )
 
     copy(
-        absolute_path('README.md'), 
+        absolute_path('README.md'),
         absolute_path('dist/README.md')
     )
 
     copy(
-        absolute_path('LICENSE'), 
+        absolute_path('LICENSE'),
         absolute_path('dist/LICENSE')
     )
 
-    for file_path in files_path:
-        path = absolute_path(file_path)
-        src_path = os.path.dirname(path)
-        dist_path = absolute_path(f'dist/{file_path.split("/")[0]}')
+    for path in paths:
+        src_path = absolute_path(path)
+        dist_path = absolute_path(f'dist/{path}')
 
         copytree(
             src_path,
             dist_path,
-            ignore=ignore_patterns('*.py'),
             symlinks=False, dirs_exist_ok=True
         )
 
-        command_options = [
-            'pyinstaller', '--onefile',
-            '--distpath', dist_path,
-            path
-        ]
+    command_options = [
+        'pyinstaller', '--onefile', '--name', 'MHXX-MHGU-Save-Converter',
+        '--distpath', absolute_path('dist'),
+        absolute_path('mhgu_mhxx_save_converter.py')
+    ]
 
-        if sys.platform == 'darwin':
-            command_options.insert(2, '--target-architecture')
-            command_options.insert(3, 'universal2')
+    if sys.platform == 'darwin':
+        command_options.insert(2, '--target-architecture')
+        command_options.insert(3, 'universal2')
 
-        subprocess.run(command_options)
+    subprocess.run(command_options, check=False)
+    
 
 
 if __name__ == "__main__":

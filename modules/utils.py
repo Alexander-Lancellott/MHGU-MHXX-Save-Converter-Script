@@ -1,24 +1,25 @@
 import os
 import sys
 import time
-import readchar
 import logging
+from typing import Callable
+import keyboard
 from colorama import Fore
 
-blue = Fore.BLUE
-green = Fore.GREEN
-yellow = Fore.YELLOW
-red = Fore.RED
-reset = Fore.RESET
+BLUE = Fore.BLUE
+GREEN = Fore.GREEN
+YELLOW = Fore.YELLOW
+RED = Fore.RED
+RESET = Fore.RESET
 
 
 class CustomFormatter(logging.Formatter):
-    format_info = f'- [{green}%(levelname)s{reset}] %(message)s'
-    format_error = f'- [{red}%(levelname)s{reset}] %(message)s'
+    format_info = f'- [{GREEN}%(levelname)s{RESET}] %(message)s'
+    format_error = f'- [{RED}%(levelname)s{RESET}] %(message)s'
 
     FORMATS = {
-        logging.INFO: f'{blue}%(asctime)s{reset} {format_info}',
-        logging.ERROR: f'{blue}%(asctime)s{reset} {format_error}',
+        logging.INFO: f'{BLUE}%(asctime)s{RESET} {format_info}',
+        logging.ERROR: f'{BLUE}%(asctime)s{RESET} {format_error}',
     }
 
     def format(self, record):
@@ -28,20 +29,86 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 
-def path(file_path):
+def absolute_path(file_path: str = ""):
+    return os.path.abspath(file_path).replace("\\modules", "")
+
+
+def path(file_path: str):
     relative_dir = os.path.dirname(file_path)
     absolute_dir = os.path.dirname(os.path.abspath(file_path))
     return absolute_dir if file_path.split('/')[0] == '..' else relative_dir
 
 
+def flush_input():
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import termios  # for linux/unix
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
+
+
 def end():
     time.sleep(1)
-    print('\nPress Any Key To Exit')
-    readchar.readchar()
-    sys.exit()
+    print(f'\nPress {YELLOW}"R"{RESET} to return to the main menu or any other key to exit')
+    key = keyboard.read_key()
+    if key == 'r':
+        return
+    else:
+        sys.exit()
 
 
-def custom_logger(name):
+def clear():
+    if os.name == 'posix':
+        os.system('clear')
+    else:
+        os.system('cls')
+
+
+def get_file(file_path: str, logger: logging.Logger):
+    try:
+        file = open(absolute_path(file_path), 'rb')
+    except OSError:
+        logger.error('No such a file or directory: %s"%s"%s', YELLOW, file_path, RESET)
+        return end()
+    with file:
+        new_file = file.read()
+        file.close()
+    return new_file
+
+
+def custom_input(
+    msg: str,
+    prompt: str,
+    max_options: int,
+    logger: logging.Logger,
+    callback: Callable[..., None] = None,
+    args: dict = ()
+):
+    choice = "Wrong"
+
+    while not choice.isdigit() or int(choice) > max_options or int(choice) == 0:
+        print(msg)
+
+        try:
+            flush_input()
+            choice = input(prompt)
+        except (EOFError, KeyboardInterrupt):
+            sys.exit()
+
+        print('')
+
+        if not choice.isdigit() or int(choice) > max_options or int(choice) == 0:
+            logger.error('%s"%s"%s is not an allowed option, try again', YELLOW, choice, RESET)
+            time.sleep(2)
+            if callback is not None:
+                callback(*args)
+        else:
+            return int(choice)
+
+
+def custom_logger(name: str):
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 
@@ -52,4 +119,4 @@ def custom_logger(name):
     ch.setFormatter(CustomFormatter())
 
     logger.addHandler(ch)
-    return dict(logger=logger, yellow=yellow, reset=reset)
+    return dict(logger=logger, yellow=YELLOW, reset=RESET)

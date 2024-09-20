@@ -4,11 +4,11 @@ setup(
     name='MHXX-MHGU-Save-Converter-Script',
     author='Alexander-Lancellott',
     author_email='alejandrov.lancellotti@gmail.com',
-    version='1.0.0',
+    version='1.1.0',
     packages=find_packages(),
     install_requires=[
         'pyinstaller==6.5.0', 
-        'readchar==4.0.6', 
+        'keyboard==0.13.5',
         'colorama==0.4.6', 
         'art==6.1'
     ],
