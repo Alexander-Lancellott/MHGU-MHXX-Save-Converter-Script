@@ -11,6 +11,7 @@ setup(
         'keyboard==0.13.5',
         "sshkeyboard==2.3.1",
         'colorama==0.4.6', 
+        'cx_Freeze',
         'art==6.1'
     ],
     python_requires='>=3.8',
