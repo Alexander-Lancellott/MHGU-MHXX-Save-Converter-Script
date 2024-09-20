@@ -72,7 +72,7 @@ from modules.utils import absolute_path
 
 def main():
     path = absolute_path("setup_cx.py")
-    py_path_unix = absolute_path(".venv\\bin\\activate")
+    py_path_unix = absolute_path(".venv/bin/activate")
     py_path_win = absolute_path(".venv\\Scripts\\python")
 
     if os.name == 'posix':
