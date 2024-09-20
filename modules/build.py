@@ -44,7 +44,7 @@ def main():
         copytree(
             src_path,
             dist_path,
-            ignore=ignore_patterns(''),
+            ignore=ignore_patterns('*.py'),
             symlinks=False, dirs_exist_ok=True
         )
 
