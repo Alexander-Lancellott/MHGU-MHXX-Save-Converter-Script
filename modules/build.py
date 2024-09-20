@@ -76,7 +76,7 @@ def main():
     py_path_win = absolute_path(".venv\\Scripts\\python")
 
     if os.name == 'posix':
-        command_options = ['source', py_path_unix, path, "build"]
+        command_options = [f'source {py_path_unix}', path, "build"]
     else:
         command_options = [py_path_win, path, "build"]
 
