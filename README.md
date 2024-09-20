@@ -188,9 +188,18 @@ D2000000 00000000
 </tr>
 </table>
 
-I also experienced this issue in MH3U, so I took the same approach, but it only worked with a value of 65. I tried to use higher values but the problem reappeared so I recommend to stick with 65.
+**Update**: While playing I noticed that this alone didn't mitigate the issue, so to completely fix it I had to increase the CPU clock speed of the 3DS emulator. I recommend setting this per game, so run the game in the emulator and go to Emulation --> Configure Current Game... in the emulator toolbar, go to the Debug tab there you will see under the box that says CPU, a bar of percentage and a selection box if the selected option is `Use global clock speed` change it to `Set clock speed` to be able to manipulate the bar, the default percentage is `100` change it to `120` or `150`, then click on the `Apply button` and on the `OK button`, done now you should experience a smooth 60 FPS.
+
+<div align="center" >
+
+![Config](https://res.cloudinary.com/dms5y8rug/image/upload/v1713902306/MHGU-MHXX-Save-Converter-Script/Screenshot_2024-04-23_165525.png)
+
+</div>
+
 
 ### Cheat for MH3U - (EUR).
+
+I also experienced this issue in MH3U, so I took the same approach, but it only worked with a value of 65. I tried to use higher values but the problem reappeared so I recommend to stick with 65.
 
 <table>
 <tr>
