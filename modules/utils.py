@@ -4,6 +4,7 @@ import time
 import logging
 from typing import Callable
 import keyboard
+from sshkeyboard import listen_keyboard, stop_listening
 from colorama import Fore
 
 BLUE = Fore.BLUE
@@ -49,15 +50,27 @@ def flush_input():
         termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 
-def end():
-    time.sleep(1)
-    print(f'\nPress {YELLOW}"R"{RESET} to return to the main menu or any other key to exit')
-    key = keyboard.read_key()
-    if key == 'r':
-        return
-    else:
-        sys.exit()
+class keyHandler:
+    def __init__(self):
+        self.exit_flag = False
 
+    def press(self, key):
+        if key == 'r':
+            stop_listening()
+        else:
+            stop_listening()
+            self.exit_flag = True
+
+    def end(self):
+        time.sleep(1)
+        print(f'\nPress {YELLOW}"R"{RESET} to return to the main menu or any other key to exit')
+
+        listen_keyboard(on_press=self.press)
+
+        if self.exit_flag:
+            sys.exit()
+        else:
+            return
 
 def clear():
     if os.name == 'posix':
@@ -71,7 +84,7 @@ def get_file(file_path: str, logger: logging.Logger):
         file = open(absolute_path(file_path), 'rb')
     except OSError:
         logger.error('No such a file or directory: %s"%s"%s', YELLOW, file_path, RESET)
-        return end()
+        return keyHandler().end()
     with file:
         new_file = file.read()
         file.close()

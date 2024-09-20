@@ -1,7 +1,7 @@
 from art import tprint
 from modules.utils import (
     custom_logger,
-    end,
+    keyHandler,
     path,
     clear,
     get_file,
@@ -63,7 +63,7 @@ def fix_chat(
             logger.error(
                 'Corrupt or wrong file in: %s"%s"%s', yellow, path(chat_path), reset
             )
-            return end()
+            return keyHandler().end()
 
         return new_save_data + chat
 
@@ -87,7 +87,7 @@ def fix_save():
 
     if len(switch_file) != 5159100:
         logger.error("Invalid Format!! - Please use Switch save data")
-        return end()
+        return keyHandler().end()
 
     slot1_validation = switch_file[
         slot_wrong_positions[0] : slot_wrong_positions[0] + 10
@@ -111,7 +111,7 @@ def fix_save():
         logger.error(
             'Corrupt or wrong file in: %s"%s"%s', yellow, path(blank_path), reset
         )
-        return end()
+        return keyHandler().end()
 
     is_position_slot_wrong = slot1_validation or slot2_validation or slot3_validation
 
@@ -161,7 +161,7 @@ def fix_save():
     output.close()
 
     logger.info('File generated in: %s"%s"%s', yellow, path(output_path), reset)
-    end()
+    keyHandler().end()
 
 
 if __name__ == "__main__":

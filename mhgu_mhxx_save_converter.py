@@ -1,8 +1,8 @@
 from art import tprint
 from modules.utils import custom_logger, clear, custom_input
 from modules.fix_save import fix_save
-from modules.mhxx_to_mhguxx import mhxx_to_mhguxx
-from modules.mhguxx_to_mhxx import mhguxx_to_mhxx
+#from modules.mhxx_to_mhguxx import mhxx_to_mhguxx
+#from modules.mhguxx_to_mhxx import mhguxx_to_mhxx
 
 init_logger = custom_logger(__name__)
 logger = init_logger["logger"]
@@ -33,7 +33,7 @@ if __name__ == "__main__":
             fix_save()
         elif option == 3:
             clear()
-            mhguxx_to_mhxx()
+            #mhguxx_to_mhxx()
         else:
             clear()
-            mhxx_to_mhguxx()
+            #mhxx_to_mhguxx()
