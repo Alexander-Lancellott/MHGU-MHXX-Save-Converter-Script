@@ -20,20 +20,19 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Create and activate virtual environment
+      - name: Create virtual environment & Build Artifact on Unix
         if: runner.os != 'Windows'
         run: |
           python -m venv .venv
           source .venv/bin/activate
+          pip install .
+          build
 
-      - name: Create and activate virtual environment on Windows
+      - name: Create virtual environment & Build Artifact on Windows
         if: runner.os == 'Windows'
         run: |
           python -m venv .venv
           .venv\Scripts\activate
-
-      - name: Build artifacts
-        run: |
           pip install .
           build
 

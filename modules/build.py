@@ -1,14 +1,14 @@
 import subprocess
 import sys
 import os
-from shutil import copy, copytree, rmtree
+from shutil import copy, copytree, rmtree, ignore_patterns
 from modules.utils import absolute_path
 
 
 def main():
     paths = [
         'FIX_SAVE - (Switch To Switch)',
-        'MHGU-XX_TO_MHXX - (Switch To 3DS)',
+        'MHGU-XX_TO_MHXX - (Switch To 3DS)/',
         'MHXX_TO_MHGU-XX - (3DS To Switch)'
     ]
 
@@ -44,6 +44,7 @@ def main():
         copytree(
             src_path,
             dist_path,
+            ignore=ignore_patterns(''),
             symlinks=False, dirs_exist_ok=True
         )
 
@@ -58,7 +59,7 @@ def main():
         command_options.insert(3, 'universal2')
 
     subprocess.run(command_options, check=False)
-    
+
 
 
 if __name__ == "__main__":
