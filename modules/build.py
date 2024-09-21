@@ -72,11 +72,11 @@ from modules.utils import absolute_path
 
 def main():
     path = absolute_path("setup_cx.py")
-    py_path_unix = ".venv/bin/python"
+    py_path_unix = absolute_path(".venv/bin/python")
     py_path_win = absolute_path(".venv\\Scripts\\python")
 
     if os.name == 'posix':
-        command_options = [f'source {py_path_unix}', path, "build"]
+        command_options = [py_path_unix, path, "build"]
     else:
         command_options = [py_path_win, path, "build"]
 
