@@ -1,5 +1,7 @@
 from art import tprint
-from modules.utils import custom_logger, get_file, end, path, absolute_path, custom_input, clear
+from modules.utils import (
+    custom_logger, get_file, keyHandler, path, absolute_path, custom_input, clear
+)
 
 init_logger = custom_logger(__name__)
 logger = init_logger["logger"]
@@ -45,7 +47,7 @@ def mhxx_to_mhguxx():
 
     if len(_3ds_file) != 4726152:
         logger.error("Invalid Format!! - Please use 3DS save data")
-        return end()
+        return keyHandler().run()
 
     msg = (
         "Which game would you like to convert your save file to?\n\n"
@@ -66,7 +68,7 @@ def mhxx_to_mhguxx():
 
         if len(blank) != 5159100:
             logger.error('Corrupt or wrong file in: %s"%s"%s', yellow, path(blank_path), reset)
-            return end()
+            return keyHandler().run()
 
         new_save_data = blank[:40] + _3ds_file[4:8] + blank[44:mhgu_initial_position]
 
@@ -86,7 +88,7 @@ def mhxx_to_mhguxx():
 
         if len(blank) != 4726188:
             logger.error('Corrupt or wrong file in: %s"%s"%s', yellow, path(blank_path), reset)
-            return end()
+            return keyHandler().run()
 
         new_save_data = (
             blank[:40] + _3ds_file[4:8] +
@@ -99,7 +101,7 @@ def mhxx_to_mhguxx():
     output.close()
 
     logger.info('File generated in: %s"%s"%s', yellow, path(output_path), reset)
-    end()
+    keyHandler().run()
 
 
 if __name__ == "__main__":

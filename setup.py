@@ -8,7 +8,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pyinstaller==6.5.0', 
-        'keyboard==0.13.5',
+        'sshkeyboard==2.3.1',
         'colorama==0.4.6', 
         'art==6.1'
     ],

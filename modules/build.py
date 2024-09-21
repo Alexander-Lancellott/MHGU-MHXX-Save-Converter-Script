@@ -58,7 +58,6 @@ def main():
         command_options.insert(3, 'universal2')
 
     subprocess.run(command_options, check=False)
-    
 
 
 if __name__ == "__main__":
