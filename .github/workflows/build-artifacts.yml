@@ -26,8 +26,6 @@ jobs:
           python -m venv .venv
           source .venv/bin/activate
           pip install .
-          cd .venv/bin
-          ls -la
           build
 
       - name: Create virtual environment & Build Artifact on Windows
