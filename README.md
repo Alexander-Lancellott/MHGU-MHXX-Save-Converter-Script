@@ -255,6 +255,6 @@ You will find the `build` in the `dist` folder
 ## Python modules used
 
 - pyinstaller - v6.5.0
-- keyboard - v0.13.5
+- sshkeyboard - v2.3.1,
 - colorama - v0.4.6
 - art - v6.1
