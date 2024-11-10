@@ -21,6 +21,12 @@ One of the issues I encountered with this editor is that it was able to convert 
 
 If the scripts I've developed meet your expectations, I would recommend using `MHXXSwitchSaveEditor` solely for editing your saves, but not for conversion purposes. Also, bear in mind that they are incompatible with each other. Therefore, if you have a Switch save file that resulted from a conversion with `MHXXSwitchSaveEditor`, you will generally need to take an extra step to make it compatible with my conversion scripts.
 
+You can support me by donating! I’d really appreciate it. But either way, thank you for using this tool!
+
+<a href='https://ko-fi.com/B0B115WKYH' target='_blank'>
+  <img height='45' style='border:0px;height:45px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+</a>
+
 ## ADD DLC
 
 ### Option A 
